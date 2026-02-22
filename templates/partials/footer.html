@@ -1,0 +1,27 @@
+<footer class="mt-5 py-4">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-4 mb-3 mb-md-0">
+        <a class="navbar-brand text-decoration-none" style="color:#c9a84c;letter-spacing:2px;font-weight:700;"
+           href="{% url 'home' %}">
+          <i class="bi bi-easel2-fill me-2"></i>ARTVAULT
+        </a>
+        <p class="small mt-1 mb-0" style="color:#777;">Your digital gallery management platform.</p>
+      </div>
+      <div class="col-md-4 text-center mb-3 mb-md-0">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="{% url 'home' %}" class="text-secondary small text-decoration-none">Home</a></li>
+          <li class="list-inline-item text-secondary">·</li>
+          <li class="list-inline-item"><a href="{% url 'artists:list' %}" class="text-secondary small text-decoration-none">Artists</a></li>
+          <li class="list-inline-item text-secondary">·</li>
+          <li class="list-inline-item"><a href="{% url 'artworks:list' %}" class="text-secondary small text-decoration-none">Artworks</a></li>
+          <li class="list-inline-item text-secondary">·</li>
+          <li class="list-inline-item"><a href="{% url 'exhibitions:list' %}" class="text-secondary small text-decoration-none">Exhibitions</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <p class="small mb-0" style="color:#555;">&copy; {% now "Y" %} ArtVault Gallery. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Exhibitions{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="container">
+    <h1 class="fw-bold mb-1"><i class="bi bi-easel2 me-2"></i>Exhibitions</h1>
+    <p class="mb-0 text-secondary">Curated exhibitions from the ArtVault collection.</p>
+  </div>
+</div>
+
+<div class="container py-5">
+
+  <!-- Status filter tabs -->
+  <ul class="nav nav-tabs mb-4">
+    <li class="nav-item">
+      <a class="nav-link {% if status_filter != 'all' %}active{% endif %}"
+         href="{% url 'exhibitions:list' %}">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% if status_filter == 'all' %}active{% endif %}"
+         href="{% url 'exhibitions:list' %}?status=all">All</a>
+    </li>
+  </ul>
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <p class="text-muted mb-0">{{ exhibitions|length }} exhibition{{ exhibitions|length|pluralize }}</p>
+    <a href="{% url 'exhibitions:create' %}" class="btn btn-gold btn-sm">
+      <i class="bi bi-plus-lg me-1"></i>New Exhibition
+    </a>
+  </div>
+
+  {% if exhibitions %}
+  <div class="row g-4">
+    {% for exhibition in exhibitions %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100">
+        {% if exhibition.cover_image_url %}
+        <img src="{{ exhibition.cover_image_url }}" alt="{{ exhibition.title }}" class="artwork-img card-img-top">
+        {% else %}
+        <div class="artwork-img card-img-top d-flex align-items-center justify-content-center"
+             style="background:linear-gradient(135deg,#0d0d0d,#2b2013);">
+          <i class="bi bi-easel2 text-warning" style="font-size:3.5rem;"></i>
+        </div>
+        {% endif %}
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <h5 class="fw-bold mb-0">{{ exhibition.title }}</h5>
+            {% if exhibition.is_ongoing %}
+            <span class="badge bg-success ms-2 flex-shrink-0">Live Now</span>
+            {% endif %}
+          </div>
+          {% if exhibition.tagline %}
+          <p class="text-muted small fst-italic mb-2">{{ exhibition.tagline }}</p>
+          {% endif %}
+          <p class="small mb-1"><i class="bi bi-geo-alt me-1 text-warning"></i>{{ exhibition.location }}</p>
+          <p class="small text-muted mb-1">
+            <i class="bi bi-calendar3 me-1"></i>
+            {{ exhibition.start_date|date:"d M Y" }} — {{ exhibition.end_date|date:"d M Y" }}
+          </p>
+          <p class="small text-muted mb-0">
+            <i class="bi bi-images me-1"></i>{{ exhibition.artworks.count }} artwork{{ exhibition.artworks.count|pluralize }}
+            {% if exhibition.admission_price == 0 %}
+            · <span class="text-success fw-semibold">Free Entry</span>
+            {% else %}
+            · ${{ exhibition.admission_price }}
+            {% endif %}
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-top d-flex gap-2 p-3">
+          <a href="{% url 'exhibitions:detail' exhibition.pk %}" class="btn btn-sm btn-gold flex-fill">View</a>
+          <a href="{% url 'exhibitions:update' exhibition.pk %}" class="btn btn-sm btn-outline-secondary">
+            <i class="bi bi-pencil"></i>
+          </a>
+          <a href="{% url 'exhibitions:delete' exhibition.pk %}" class="btn btn-sm btn-outline-danger">
+            <i class="bi bi-trash"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-center py-5">
+    <i class="bi bi-easel2" style="font-size:4rem;color:#ccc;"></i>
+    <h4 class="mt-3 text-muted">No exhibitions found</h4>
+    <a href="{% url 'exhibitions:create' %}" class="btn btn-gold mt-2">Create First Exhibition</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

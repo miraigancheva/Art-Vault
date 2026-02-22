@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <i class="bi bi-easel2-fill me-2"></i>ARTVAULT
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+             href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if 'artists' in request.resolver_match.namespace %}active{% endif %}"
+             href="{% url 'artists:list' %}">Artists</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {% if 'artworks' in request.resolver_match.namespace %}active{% endif %}"
+             href="#" data-bs-toggle="dropdown">Artworks</a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="{% url 'artworks:list' %}">All Artworks</a></li>
+            <li><a class="dropdown-item" href="{% url 'artworks:category-list' %}">Categories</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'artworks:create' %}"><i class="bi bi-plus-circle me-1"></i>Add Artwork</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if 'exhibitions' in request.resolver_match.namespace %}active{% endif %}"
+             href="{% url 'exhibitions:list' %}">Exhibitions</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-gold btn-sm ms-2" href="{% url 'artists:create' %}">
+            <i class="bi bi-plus-lg me-1"></i>Add Artist
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
