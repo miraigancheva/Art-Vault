@@ -1,6 +1,6 @@
 # ArtVault - Digital Gallery Management System
 
-ArtVault is a Django web application for managing a digital art gallery. It allows users to catalogue artists, manage their artworks, and curate exhibitions through a clean, responsive Bootstrap interface.
+ArtVault is a Django web application for managing a digital art gallery. It allows users to catalogue artists, manage their artworks and curate exhibitions through a clean, responsive Bootstrap interface.
 
 ---
 
@@ -8,10 +8,10 @@ ArtVault is a Django web application for managing a digital art gallery. It allo
 
 The project is split into three Django applications, each with a clearly defined responsibility:
 
-| App | Responsibility |
-|-----|---------------|
-| `artists` | Manage artist profiles, biographies, and nationalities |
-| `artworks` | Manage individual artworks and their medium categories |
+| App | Responsibilities                                         |
+|-----|----------------------------------------------------------|
+| `artists` | Manage artist profiles, biographies, and nationalities   |
+| `artworks` | Manage individual artworks and their medium categories   |
 | `exhibitions` | Curate exhibitions that group multiple artworks together |
 
 ### Database Relationships
