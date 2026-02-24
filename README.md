@@ -125,7 +125,7 @@ DB_HOST=localhost
 DB_PORT=5432
 ```
 
-Admin panel (after running createsuperuser with the values below):
+Admin panel (after running createsuperuser with the values showen below):
 
 ```
 URL:      http://127.0.0.1:8000/admin
